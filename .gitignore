@@ -36,3 +36,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 /.idea/
+
+certificates
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
