@@ -4,3 +4,9 @@ interface Props {
     style?: React.CSSProperties;
     onChange?: React.FormEventHandler<HTMLInputElement>;
 }
+
+interface PageProps {
+    params: {
+        page:number
+    }
+}

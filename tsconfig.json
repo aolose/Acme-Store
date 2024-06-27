@@ -4,7 +4,8 @@
       "@css/*": ["styles/*"],
       "@cpm/*": ["components/*"],
       "@store": ["store/index"],
-      "@types": ["common/types"]
+      "@types": ["common/types"],
+      "@public/*": ["public/*"],
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

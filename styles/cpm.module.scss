@@ -1,0 +1,102 @@
+.machineBg {
+  background: linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.2)), #1b263b url("https://www.transparenttextures.com/patterns/food.png") repeat;
+  border: rgba(81, 139, 211, 0.1) solid .1rem;
+  position: relative;
+}
+
+.brand {
+  animation: shine infinite 3s both;
+  width: 300px;
+  padding: .4rem .2rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid;
+  color: rgba(214, 189, 101, 0.8);
+  text-shadow: #c4dbf8 0 0 .14rem;
+  box-shadow: rgba(236, 156, 111, 0.36) 0 0 1rem;
+}
+
+$shadowColor: #0d1b2a;
+.shadowBottom {
+  background: transparentize($shadowColor, .1);
+  background-size: 4px;
+  left: 0;
+  right: 4.8rem;
+  bottom: 0;
+  height: 1rem;
+  transform: skewX(-75deg);
+}
+
+@property --ro {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes shine {
+  0%, 9%, 11%, 89%, 91% {
+    filter: brightness(1);
+  }
+  90% {
+    filter: brightness(0.3);
+  }
+  10% {
+    filter: brightness(2);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    --ro: 0deg
+  }
+  100% {
+    --ro: 100deg
+  }
+}
+
+.aniHu {
+  animation: rotate both 10s infinite;
+}
+
+.character {
+  position: absolute;
+  bottom: -3rem;
+  left: -2rem;
+  transition: .2s;
+  filter: drop-shadow(-1rem 1rem .3rem rgba(3, 6, 14, .5)) grayscale(1);
+}
+
+.shadowLeft {
+  border-radius: 1rem 0 0 0;
+  background: $shadowColor;
+  width: 5rem;
+  left: .1rem;
+  top: 3rem;
+  bottom: 0.3rem;
+  transform: skewY(-55deg) translateY(39px);
+}
+
+.displayBox {
+  background: #1e2943;
+  border: .2rem rgba(43, 43, 103, 0.3) solid;
+  box-shadow: rgba(0, 0, 0, .3) inset -.1rem .1rem .1rem .1rem, rgba(0,0,0,.3) -.3rem .3rem .1rem;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    opacity: .5;
+    content: '';
+    background: linear-gradient(-90deg, rgba(white, .05), rgba(white, .02));
+    width: 20%;
+    height: 100%;
+    top: 0%;
+    left: 30%;
+    transform: skew(45deg);
+    position: absolute;
+  }
+}
+
+.scene {
+  padding: 2rem 2rem 1rem 4rem;
+}
