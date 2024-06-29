@@ -5,10 +5,14 @@ import {useCurrencyList} from "./index";
 import {loadCurrencyList, loadItems} from "../utils/loadData";
 import {useSearchParams} from "next/navigation";
 
+export const useSearch = (key: string) => {
+    const searchParams = useSearchParams()
+    return searchParams.get(key) || new URL(globalThis?.location?.href || '', 'http://a').searchParams.get(key) || ''
+}
+
 export const usePageData = () => {
     const router = useRouter()
-    const params = useSearchParams()
-    const search = params.get("search") || '';
+    const search = useSearch('s')
     const [currencyList, setList] = useCurrencyList()
     const [products, setProducts] = useState([] as Item[])
     const p = +(router.query.page || 1)

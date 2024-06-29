@@ -1,9 +1,10 @@
-import {useSearchParams} from "next/navigation";
 import {useState} from "react";
 import {useRouter} from "next/router";
 import t from '@css/app.module.scss'
+import {useSearch} from "../store/hooks";
 
-export const Search = ({search: s = ''}) => {
+export const Search = () => {
+    const s = useSearch('s')
     const [search, setSearch] = useState(s)
     const router = useRouter()
     const exec = () => {
