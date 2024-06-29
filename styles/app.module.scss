@@ -352,11 +352,13 @@
 }
 
 .search {
+  opacity: .9;
   * {
     transition: .2s ease-in-out;
   }
 
   &:has(input:focus) {
+    opacity: 1;
     input {
       background: #11222d;
       color: #fff;
@@ -392,17 +394,57 @@
     height: 4rem;
     position: absolute;
     text-shadow: #24241b 1px 1px 2px;
-    &:hover{
-      transform: translateY(var(--t,0)) rotate3d(1,1,-1,30deg);
+
+    &:hover {
+      transform: translateY(var(--t, 0)) rotate3d(1, 1, -1, 30deg);
     }
   }
-  :global(.cur){
-    filter:drop-shadow(0px 10px 15px rgba(0, 0, 0, .5));
+
+  :global(.cur) {
+    z-index: 100;
+    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, .5));
   }
 }
 
 .btnCurrency:has(:global(.cur:focus)) {
   button {
-    transform: translateY(var(--t,0))
+    transform: translateY(var(--t, 0))
+  }
+}
+
+.pageButtons {
+  display: flex;
+  position: fixed;
+  left: 8rem;
+  bottom: 2rem;
+  color: #fff;
+
+  a ,span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 .4rem;
+    width: 4rem;
+    background: black;
+    height: 4rem;
+  }
+
+a{
+  box-shadow: rgba(0,0,0,.5) -5px 5px 10px;
+}
+  a:hover{
+    background: #fff;
+    color: #000;
+  }
+
+  :global(.cur){
+    pointer-events: none;
+    background: #242b30;
+  }
+  span {
+    opacity: .5;
+    width: 1rem;
+    background: none;
   }
 }

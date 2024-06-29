@@ -16,13 +16,15 @@ export const CurrencyBtn = () => {
         key: "usd",
         symbol: "$",
     }
+    const len = list.length
     return <div className={t.btnCurrency}>
         {
             list.filter(a => a.key !== c.key)
                 .map((c, i) => {
                     const style = {
-                        '--t': `${-100 * i - 15 * i}%`
+                        '--t': `${-120 * (len-i-1)}%`
                     } as CSSProperties;
+                    // @ts-ignore
                     return <button key={c.key} style={style} onClick={() => setCurrency(c.key)}>
                         <span className={'font-700'}>{c.symbol}</span>
                         <span className={'uppercase'}>{c.key}</span>

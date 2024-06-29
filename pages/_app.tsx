@@ -5,7 +5,6 @@ import type {AppProps} from 'next/app'
 import Head from "next/head";
 
 function MyApp({Component, pageProps}: AppProps) {
-    debugger
     return <>
         <Head>
             <title>Home</title>

@@ -1,17 +1,21 @@
 import {atom, useAtom, useAtomValue} from 'jotai'
 import {Currency, CurrencyKey, Item} from "@types";
+
 const cartKey = 'cart'
 
-const localCache = ()=>{
-    if(globalThis?.localStorage){
+const localCache = () => {
+    if (globalThis?.localStorage) {
         try {
-           const c = localStorage.getItem(cartKey)
-           if(c) return JSON.parse(c) as CartItem[];
-        }catch(e){}
+            const c = localStorage.getItem(cartKey)
+            if (c) return JSON.parse(c) as CartItem[];
+        } catch (e) {
+        }
     }
     return [] as CartItem[]
 }
-
+// total page
+const total = atom(1)
+export const useTotal = () => useAtom(total)
 const cardItems = atom<CartItem[]>(localCache())
 const currency = atom<CurrencyKey>('usd')
 const currencyList = atom<Currency[]>([])

@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {loadItems} from "../utils/loadData";
 import {useSearchParams} from "next/navigation";
 
-export const useSearch = (key: string) => {
+export const useSearch = (key: string='s') => {
     const searchParams = useSearchParams()
     return searchParams.get(key) || new URL(globalThis?.location?.href || '', 'http://a').searchParams.get(key) || ''
 }
