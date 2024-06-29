@@ -1,11 +1,21 @@
 .scene {
-  background: radial-gradient(#f2f2f2, #aaa);
-  perspective: 2000px;
+  background: linear-gradient(#000104, #272835);
+  perspective: 1800px;
   overflow: hidden;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  }
 
   :global {
     div {
-      position: absolute;
       transform-style: preserve-3d;
       display: flex;
       align-items: center;
@@ -49,12 +59,13 @@
 }
 
 .innerFront {
+  filter: brightness(.9);
 }
 
 
 .innerBack {
   background: #4b4b4b;
-  filter: brightness(.4);
+  filter: brightness(.5);
 }
 
 .innerLeft {
@@ -112,6 +123,7 @@
 .innerFront,
 .innerRight,
 .innerLeft {
+  position: absolute;
   background-color: #fff;
   transform-origin: bottom center;
   --fix-h: calc(var(--gap) / 2);
@@ -126,4 +138,168 @@
 .baseWallFront {
   position: absolute;
   transform: rotateY(var(--ryv, 0deg)) rotateX(var(--rxv, 0deg)) translateZ(var(--tz));
+}
+
+.house {
+  position: absolute;
+  transform: rotateY(30deg);
+  left: 20%;
+  bottom: 20%;
+}
+
+.cloth {
+  background: #061208 url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png");
+}
+
+
+.decorateShadow {
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj48c3ZnIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA0NzMgMTQxOCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxuczpzZXJpZj0iaHR0cDovL3d3dy5zZXJpZi5jb20vIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjI7Ij48Zz48Y2lyY2xlIGN4PSIyMzYuMjIiIGN5PSIxMTgxLjEiIHI9IjIzNi4yMiIvPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI0NzIuNDQxIiBoZWlnaHQ9IjExODEuMSIvPjwvZz48L3N2Zz4=);
+  opacity: 0.2;
+}
+
+.decorate {
+  @extend .cloth;
+  mask-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj48c3ZnIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA0NzMgMTQxOCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxuczpzZXJpZj0iaHR0cDovL3d3dy5zZXJpZi5jb20vIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjI7Ij48Zz48Y2lyY2xlIGN4PSIyMzYuMjIiIGN5PSIxMTgxLjEiIHI9IjIzNi4yMiIvPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI0NzIuNDQxIiBoZWlnaHQ9IjExODEuMSIvPjwvZz48L3N2Zz4=);
+  filter: drop-shadow(0px 10px 20px #000);
+}
+
+.wood {
+  background: #2d1c1b url("https://www.transparenttextures.com/patterns/dark-wood.png");
+}
+
+.rocket {
+  background: #050505 url("https://www.transparenttextures.com/patterns/xv.png");
+}
+
+.wall {
+  background: #780200 url("https://www.transparenttextures.com/patterns/brick-wall.png");
+}
+
+.innerWall {
+  background: #202427 url("https://www.transparenttextures.com/patterns/white-diamond.png");
+
+  &.innerRight {
+    filter: brightness(.3)
+  }
+
+  &.innerLeft {
+    filter: brightness(.7)
+  }
+
+  &.baseWallTop {
+    filter: brightness(.4)
+  }
+
+  &.baseWallBottom {
+    filter: brightness(.7)
+  }
+
+  &.innerFront {
+    filter: brightness(.3)
+  }
+
+  &.innerBack {
+    filter: brightness(.4)
+  }
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  height: 50vh;
+  width: 100vw;
+  background: rgb(1, 12, 0) url("https://www.transparenttextures.com/patterns/felt.png");
+
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#14151d, transparent 50%);
+  }
+}
+
+.shadow {
+  position: absolute;
+  background: linear-gradient(75deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5) 40%);
+  width: var(--sw);
+  height: var(--sh);
+  --x: calc(var(--sw) * -.5);
+  --y: calc(var(--sh) / 2);
+  border-radius: 100px;
+  transform: translate3d(var(--x), var(--y), 0) rotateY(283deg) rotateX(90deg) scale(2.6) skewY(-4deg);
+  transform-origin: 80% 50%;
+  filter: blur(20px);
+}
+
+.windowClip {
+  clip-path: polygon(
+                  0 0,
+                  var(--wa) var(--wa),
+                  calc(var(--wx) - var(--wa)) var(--wa),
+                  calc(var(--wx) - var(--wa)) calc(var(--wy) - var(--wa)),
+                  var(--wa) calc(var(--wy) - var(--wa)),
+                  var(--wa) var(--wa),
+                  0 0,
+                  0 var(--wy),
+                  var(--wx) var(--wy),
+                  var(--wx) 0, 0 0);
+}
+
+@keyframes ry {
+  0% {
+    transform: rotateY(0deg)
+  }
+  100% {
+    transform: rotateY(360deg)
+  }
+}
+
+.gift {
+  background-image: url("https://www.transparenttextures.com/patterns/food.png");
+  background-size: 54px auto;
+}
+
+.item {
+  font-size: 13px;
+  white-space: nowrap;
+  height: 140px;
+  flex-direction: column;
+  transition: .2s ease-in-out;
+  transform: translate3d(var(--ix, 0), var(--iy, 0), var(--deep));
+  filter: brightness(.7);
+
+  & > div {
+    animation: ry 3s linear infinite;
+  }
+
+  &:hover {
+    text-shadow: #007fda 0 0 5px;
+    filter: brightness(1) drop-shadow(0px 2px 15px rgb(255, 255, 255));
+    transform: translate3d(var(--ix, 0), var(--iy, 0), calc(var(--deep) + 30px));
+  }
+
+  p {
+    padding: 10px;
+  }
+}
+
+.bg0 {
+  background-color: #621c22;
+}
+
+.bg1 {
+  background-color: #24421a;
+}
+
+.bg2 {
+  background-color: #354a4b;
+}
+
+.bg3 {
+  background-color: #11222d;
+}
+
+.bg4 {
+  background-color: #511d57;
 }

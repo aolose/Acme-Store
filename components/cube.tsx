@@ -11,21 +11,22 @@ import type {CSSProperties} from "react";
  * @param rx x-axis rotation angle
  * @param ry y-axis rotation angle
  * @param backClass classname for back side
- * @param bottomClass classname for bottom side
- * @param frontClass classname for front side
- * @param leftClass classname for left side
- * @param rightClass classname for right side
- * @param topClass classname for top side
- * @param widthX x-axis width
- * @param widthY y-axis width
- * @param widthZ z-axis width
- * @param tWidthX top side x width
- * @param tWidthZ top side z width
- * @param hideSurfaces hide some surfaces
+ * @param bottom classname for bottom side
+ * @param front classname for front side
+ * @param left classname for left side
+ * @param right classname for right side
+ * @param top classname for top side
+ * @param sizeX x-axis width
+ * @param sizeY y-axis width
+ * @param sizeZ z-axis width
+ * @param topX top side x width
+ * @param topZ top side z width
+ * @param hide hide some surfaces
  *
  * @constructor
  */
 export const Cube = ({
+                         children,
                          x = 0,
                          y = 0,
                          z = 0,
@@ -93,18 +94,21 @@ export const Cube = ({
         <div className={clsx(c.baseCubeRotate, isPyramid && c.basePyramid)}>
             {show(Surface.BOTTOM) && <div className={clsx(c.baseWallBottom, bottom)}/>}
             {show(Surface.BACK) && <div className={c.baseWallBack}>
-                <div className={clsx(c.baseWallBack, back)}/>
+                <div className={clsx(c.innerBack, back)}/>
             </div>}
             {show(Surface.RIGHT) && <div className={c.baseWallRight}>
                 <div className={clsx(c.innerRight, right)}/>
             </div>}
             {show(Surface.LEFT) && <div className={c.baseWallLeft}>
-                <div className={clsx(c.innerLeft,left)}/>
+                <div className={clsx(c.innerLeft, left)}/>
             </div>}
             {show(Surface.TOP) && <div className={clsx(c.baseWallTop, top)}/>}
             {show(Surface.FRONT) && <div className={c.baseWallFront}>
-                <div className={clsx(c.innerFront,front)}></div>
+                <div className={clsx(c.innerFront, front)}></div>
             </div>}
+            <div className={'absolute'}>
+                {children}
+            </div>
         </div>
     </div>
 }
