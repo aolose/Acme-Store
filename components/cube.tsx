@@ -31,18 +31,18 @@ export const Cube = ({
                          z = 0,
                          rx = 0,
                          ry = 0,
-                         backClass,
-                         bottomClass,
-                         frontClass,
-                         leftClass,
-                         rightClass,
-                         topClass,
-                         widthX = 150,
-                         widthY = 150,
-                         widthZ = 150,
-                         tWidthX,
-                         tWidthZ,
-                         hideSurfaces = [0, 0, 0, 0, 0, 0]
+                         back,
+                         bottom,
+                         front,
+                         left,
+                         right,
+                         top,
+                         sizeX = 150,
+                         sizeY = 150,
+                         sizeZ = 150,
+                         topX,
+                         topZ,
+                         hide = []
                      }: CubeProps) => {
     let fbw = 0,
         lra = 0,
@@ -58,14 +58,14 @@ export const Cube = ({
         return [d, h, Math.atan(d / height) * 180 / Math.PI]
     }
 
-    if (tWidthZ !== undefined) {
+    if (topZ !== undefined) {
         isPyramid = true;
-        [lrw, fbh, fba] = getAngle(tWidthZ, widthZ, widthY)
+        [lrw, fbh, fba] = getAngle(topZ, sizeZ, sizeY)
 
     }
-    if (tWidthX !== undefined) {
+    if (topX !== undefined) {
         isPyramid = true;
-        [fbw, lrh, lra] = getAngle(tWidthX, widthX, widthY)
+        [fbw, lrh, lra] = getAngle(topX, sizeX, sizeY)
     }
 
     const style = {
@@ -74,36 +74,46 @@ export const Cube = ({
         '--z': `${z}px`,
         '--rx': `${Math.floor(rx)}deg`,
         '--ry': `${Math.floor(ry)}deg`,
-        '--twx': `${tWidthX ?? widthX}px`,
-        '--twz': `${tWidthZ ?? widthZ}px`,
-        '--wx': `${widthX}px`,
-        '--wy': `${widthY}px`,
-        '--wz': `${widthZ}px`,
-        '--lrh': `${lrh || widthY}px`,
-        '--fbh': `${fbh || widthY}px`,
+        '--twx': `${topX ?? sizeX}px`,
+        '--twz': `${topZ ?? sizeZ}px`,
+        '--wx': `${sizeX}px`,
+        '--wy': `${sizeY}px`,
+        '--wz': `${sizeZ}px`,
+        '--lrh': `${lrh || sizeY}px`,
+        '--fbh': `${fbh || sizeY}px`,
         '--fbw': `${fbw}px`,
         '--lrw': `${lrw}px`,
         '--fba': `${fba}deg`,
         '--lra': `${lra}deg`,
     } as CSSProperties;
 
+    const show = (surface: Surface) => !hide.includes(surface)
 
     return <div className={c.baseCubeXYZ} style={style}>
         <div className={clsx(c.baseCubeRotate, isPyramid && c.basePyramid)}>
-            {!hideSurfaces[1] && <div className={clsx(c.baseWallBottom, bottomClass)}/>}
-            {!hideSurfaces[5] && <div className={c.baseWallBack}>
-                <div className={backClass}/>
+            {show(Surface.BOTTOM) && <div className={clsx(c.baseWallBottom, bottom)}/>}
+            {show(Surface.BACK) && <div className={c.baseWallBack}>
+                <div className={clsx(c.baseWallBack, back)}/>
             </div>}
-            {!hideSurfaces[3] && <div className={c.baseWallRight}>
-                <div className={rightClass}/>
+            {show(Surface.RIGHT) && <div className={c.baseWallRight}>
+                <div className={clsx(c.innerRight, right)}/>
             </div>}
-            {!hideSurfaces[2] && <div className={c.baseWallLeft}>
-                <div className={leftClass}/>
+            {show(Surface.LEFT) && <div className={c.baseWallLeft}>
+                <div className={clsx(c.innerLeft,left)}/>
             </div>}
-            {!hideSurfaces[0] && <div className={clsx(c.baseWallTop, topClass)}/>}
-            {!hideSurfaces[4] && <div className={c.baseWallFront}>
-                <div className={frontClass}/>
+            {show(Surface.TOP) && <div className={clsx(c.baseWallTop, top)}/>}
+            {show(Surface.FRONT) && <div className={c.baseWallFront}>
+                <div className={clsx(c.innerFront,front)}></div>
             </div>}
         </div>
     </div>
+}
+
+export enum Surface {
+    FRONT,
+    BACK,
+    LEFT,
+    RIGHT,
+    TOP,
+    BOTTOM
 }

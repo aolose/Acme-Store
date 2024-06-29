@@ -1,12 +1,16 @@
 .scene {
   background: radial-gradient(#f2f2f2, #aaa);
-  perspective: 500px;
+  perspective: 2000px;
   overflow: hidden;
 
-  div {
-    position: absolute;
-    transform-style: preserve-3d;
-    transform-origin: center center;
+  :global {
+    div {
+      position: absolute;
+      transform-style: preserve-3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 
@@ -15,40 +19,23 @@
 }
 
 .baseCubeRotate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transform: rotateY(var(--ry)) rotateX(var(--rx));
 }
 
 .baseWallFront {
   --ryv: 0deg;
-  div {
-    background: #fff
-  }
-}
-
-.baseWallBack {
-  --ryv: 180deg;
-  div {
-    background: #4b4b4b;
-  }
 }
 
 .baseWallLeft {
   --ryv: -90deg;
+}
 
-  div {
-    background: #666;
-  }
+.baseWallBack {
+  --ryv: 180deg;
 }
 
 .baseWallRight {
   --ryv: 90deg;
-
-  div {
-    background: #cacaca;
-  }
 }
 
 .baseWallTop {
@@ -58,19 +45,30 @@
 
 .baseWallBottom {
   --rxv: -90deg;
-  background: #000
+  filter: brightness(.3);
+}
+
+.innerFront {
+}
+
+
+.innerBack {
+  background: #4b4b4b;
+  filter: brightness(.4);
+}
+
+.innerLeft {
+  background: #666;
+  filter: brightness(.6);
+}
+
+
+.innerRight {
+  background: #cacaca;
+  filter: brightness(.8);
 }
 
 .basePyramid {
-  .baseWallLeft,
-  .baseWallRight,
-  .baseWallBack,
-  .baseWallFront {
-    div {
-      transform-origin: bottom center;
-    }
-  }
-
   .baseWallTop {
     width: var(--twx);
     height: var(--twz);
@@ -82,12 +80,6 @@
   --tz: calc(var(--wz) / 2);
   --fbe: calc(var(--fbw) + var(--twx));
   --gap: calc(var(--wy) - var(--fbh));
-
-  div {
-    width: var(--wx);
-    height: var(--fbh);
-    clip-path: polygon(var(--fbw) 0, var(--fbe) 0, var(--wx) var(--fbh), 0 var(--fbh));
-  }
 }
 
 .baseWallLeft, .baseWallRight {
@@ -95,18 +87,35 @@
   --tz: calc(var(--wx) / 2);
   --lre: calc(var(--lrw) + var(--twz));
   --gap: calc(var(--wy) - var(--lrh));
+}
 
-  div {
-    width: var(--wz);
-    height: var(--lrh);
-    clip-path: polygon(var(--lrw) 0, var(--lre) 0, var(--wz) var(--lrh), 0 var(--lrh));
-  }
+.innerFront, .innerBack {
+  width: var(--wx);
+  height: var(--fbh);
+  clip-path: polygon(var(--fbw) 0, var(--fbe) 0, var(--wx) var(--fbh), 0 var(--fbh));
+}
+
+.innerLeft, .innerRight {
+  width: var(--wz);
+  height: var(--lrh);
+  clip-path: polygon(var(--lrw) 0, var(--lre) 0, var(--wz) var(--lrh), 0 var(--lrh));
 }
 
 .baseWallTop, .baseWallBottom {
+  background-color: #fff;
   width: var(--wx);
   height: var(--wz);
   --tz: calc(var(--wy) / 2)
+}
+
+.innerBack,
+.innerFront,
+.innerRight,
+.innerLeft {
+  background-color: #fff;
+  transform-origin: bottom center;
+  --fix-h: calc(var(--gap) / 2);
+  transform: translateY(var(--fix-h, 0)) rotateX(var(--rr, 0deg));
 }
 
 .baseWallTop,
@@ -116,23 +125,5 @@
 .baseWallBack,
 .baseWallFront {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transform: rotateY(var(--ryv, 0deg)) rotateX(var(--rxv, 0deg)) translateZ(var(--tz));
-  div {
-    --fix-h: calc(var(--gap) / 2);
-    transform: translateY(var(--fix-h, 0)) rotateX(var(--rr, 0deg));
-  }
-}
-
-.shadow1 {
-  width: 400px;
-  height: 100px;
-  border-radius: 10%;
-  opacity: .4;
-  background: linear-gradient(180deg, #666, #000);
-  transform: rotateX(30deg) rotateY(0deg) translate3d(50px, 200px, 10px) skewX(60deg);
-  filter: blur(20px);
-  box-shadow: inset 0 0 50px rgba(238, 238, 238, 0.2);
 }

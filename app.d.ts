@@ -23,29 +23,29 @@ interface CubeProps extends Props {
     // rotateX angle
     rx?: number,
     // front surface class name
-    frontClass?: string,
+    front?: string,
     // back surface class name
-    backClass?: string,
+    back?: string,
     // left surface class name
-    leftClass?: string,
+    left?: string,
     // right surface class name
-    rightClass?: string,
+    right?: string,
     // top surface class name
-    topClass?: string,
+    top?: string,
     // bottom surface class name
-    bottomClass?: string,
+    bottom?: string,
     // the x-axis width of cube
-    widthX?: number,
+    sizeX?: number,
     // the y-axis width of cube
-    widthY?: number,
+    sizeY?: number,
     // the z-axis width of cube
-    widthZ?: number,
+    sizeZ?: number,
     // top surface x-axis width, default same as widthX
-    tWidthX?: number,
+    topX?: number,
     // top surface z-axis width, default same as widthZ
-    tWidthZ?: number,
+    topZ?: number,
     // Specifies the face of the cube to hide
     // default [0,0,0,0,0,0]
     // The six fields means: [top,bottom,left,right,front,back]
-    hideSurfaces?: (undefined|number)[]
+    hide?: Surface[]
 }
