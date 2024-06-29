@@ -26,9 +26,13 @@ export const useCurrency = () => {
     const list = useAtomValue(currencyList)
     const [k, sk] = useAtom(currency)
     return [
-        list.find(a => a.key === k),
+        list.find(a => a.key === k) || {
+            key: 'usd',
+            symbol: '$',
+            usdCoef: 1
+        } as Currency,
         sk
-    ]
+    ] as [Currency, typeof sk]
 }
 
 export const useCart = () => {

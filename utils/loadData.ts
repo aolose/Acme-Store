@@ -16,7 +16,7 @@ export const loadCurrencyList = async () => {
 }
 
 
-export const loadItems = (page = 1, search = '', size = 8) => {
+export const loadItems = (page = 1, search = '', size = 6) => {
     const offset = page * size
     const controller = new AbortController();
     const signal = controller.signal;
@@ -30,6 +30,7 @@ export const loadItems = (page = 1, search = '', size = 8) => {
                     total: Math.ceil(a.total / size),
                     items: a.items
                 }
-            }), cancel: () => controller.abort()
+                // @ts-ignore
+            }), cancel: () => controller.abort('o')
     }
 }

@@ -12,28 +12,24 @@ export const CurrencyBtn = () => {
             loadCurrencyList().then(setList)
         }
     }, [list.length])
-    const c = currency as Currency || {
-        key: "usd",
-        symbol: "$",
-    }
     const len = list.length
     return <div className={t.btnCurrency}>
         {
-            list.filter(a => a.key !== c.key)
+            list.filter(a => a.key !== currency.key)
                 .map((c, i) => {
                     const style = {
                         '--t': `${-120 * (len-i-1)}%`
                     } as CSSProperties;
                     // @ts-ignore
-                    return <button key={c.key} style={style} onClick={() => setCurrency(c.key)}>
+                    return <button key={c.key} style={style} onPointerUp={() => setCurrency(c.key)}>
                         <span className={'font-700'}>{c.symbol}</span>
                         <span className={'uppercase'}>{c.key}</span>
                     </button>
                 })
         }
         <button className={'cur'} key={'-'}>
-            <span>{c.symbol}</span>
-            <span className={'uppercase font-size-3 font-400'}>{c.key}</span>
+            <span>{currency.symbol}</span>
+            <span className={'uppercase font-size-3 font-400'}>{currency.key}</span>
         </button>
     </div>
 }

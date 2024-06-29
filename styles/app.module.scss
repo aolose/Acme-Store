@@ -156,8 +156,6 @@
 
 .house {
   position: absolute;
-  transform: rotateY(30deg);
-  left: 20%;
   bottom: 20%;
 }
 
@@ -283,16 +281,18 @@
   transition: .2s ease-in-out;
   transform: translate3d(var(--ix, 0), var(--iy, 0), var(--deep));
   filter: brightness(.7);
-
+  position: relative;
   & > div {
     display: flex;
-    animation: ry 3s linear infinite;
   }
 
   &:hover {
     text-shadow: #007fda 0 0 5px;
     filter: brightness(1) drop-shadow(0px 2px 15px rgb(255, 255, 255));
     transform: translate3d(var(--ix, 0), var(--iy, 0), calc(var(--deep) + 30px));
+    &>div{
+      animation: ry 3s linear infinite;
+    }
   }
 
   p {
@@ -447,4 +447,12 @@ a{
     width: 1rem;
     background: none;
   }
+}
+
+.list{
+  margin-bottom: -3rem;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }

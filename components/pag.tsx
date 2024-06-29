@@ -4,12 +4,12 @@ import {ReactNode} from "react";
 import Link from "next/link";
 import {useSearch} from "../store/hooks";
 import t from '@css/app.module.scss'
+import {useTotal} from "@store";
 
 export const PageButtons = () => {
     const search = useSearch()
     const cur = +(useRouter().query.page || 1)
-    const total = 10;
-    // const [total] = useTotal()
+    const [total] = useTotal()
     const getBtn = ()=>{
         let i = 2
         const ps = [cur - 2, cur - 1, cur, cur + 1, cur + 2]

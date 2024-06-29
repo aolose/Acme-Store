@@ -1,19 +1,21 @@
 import {Cube, Surface} from "@cpm/cube";
 import c from '@css/app.module.scss'
 import clsx from "clsx";
-import {Item} from "@cpm/item";
 import Image from "next/image";
+import type {ReactNode} from "react";
 
 export const House = ({
+                          children = [] as ReactNode[]|ReactNode,
                           wx = 640, wy = 400,
                           wz = 500,
                           ry = 10,
-                          rx = 0
+                          rx = 0,
+                          loading = false,
                       }) => {
     const {
         wood, cloth, decorate,
         shadow, decorateShadow, rocket,
-        windowClip,innerWall
+        windowClip, innerWall
     } = c
     const wallGap = 40
     const wallDeep = 200
@@ -22,12 +24,12 @@ export const House = ({
     const css = {
         width: `${wx}px`,
         height: `${wy}px`,
-        transform:`rotateX(${rx}deg) rotateY(${ry}deg)`,
+        transform: `rotateX(${rx}deg) rotateY(${ry}deg)`,
         '--sh': `${wy}px`,
         '--sw': `${wx}px`,
         '--dh': `${expand}px`,
         '--wa': `${wallGap}px`,
-        '--deep':`${-wallDeep/4}px`
+        '--deep': `${-wallDeep / 4}px`
     }
     return <div className={c.house} style={css}>
         <div className={shadow}/>
@@ -51,7 +53,7 @@ export const House = ({
             sizeX={wx}
             sizeY={wy}
             sizeZ={wz}
-            front={clsx(wood, windowClip,'pointer-events-none')}
+            front={clsx(wood, windowClip, 'pointer-events-none')}
             right={wood}
             left={wood}
             back={wood}
@@ -107,7 +109,7 @@ export const House = ({
         />
         {/*Inner Walls*/}
         <Cube
-            z={(wz-wallDeep) / 2}
+            z={(wz - wallDeep) / 2}
             sizeX={wx - wallGap * 2}
             sizeY={wy - wallGap * 2}
             sizeZ={wallDeep}
@@ -119,7 +121,7 @@ export const House = ({
                 Surface.FRONT
             ]}
         >
-            <Item/>
+            {children}
         </Cube>
     </div>
 }
