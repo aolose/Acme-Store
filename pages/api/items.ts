@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { items } from "../../common/data";
-import { ApiItemsRequest, ApiItemsResponse } from "../../common/types";
+import { items } from "@data";
+import { ApiItemsRequest, ApiItemsResponse } from "@types";
 
 export default function handler(
   req: NextApiRequest,

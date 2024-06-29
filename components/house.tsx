@@ -1,12 +1,13 @@
 import {Cube, Surface} from "@cpm/cube";
-import c from '@css/3d.module.scss'
+import c from '@css/app.module.scss'
 import clsx from "clsx";
 import {Item} from "@cpm/item";
+import Image from "next/image";
 
 export const House = ({
                           wx = 640, wy = 400,
                           wz = 500,
-                          ry = 30,
+                          ry = 10,
                           rx = 0
                       }) => {
     const {
@@ -26,7 +27,7 @@ export const House = ({
         '--sw': `${wx}px`,
         '--dh': `${expand}px`,
         '--wa': `${wallGap}px`,
-        '--deep':`${-wallDeep/2}px`
+        '--deep':`${-wallDeep/4}px`
     }
     return <div className={c.house} style={css}>
         <div className={shadow}/>
@@ -50,10 +51,13 @@ export const House = ({
             sizeX={wx}
             sizeY={wy}
             sizeZ={wz}
-            front={clsx(wood, windowClip)}
+            front={clsx(wood, windowClip,'pointer-events-none')}
             right={wood}
             left={wood}
             back={wood}
+            leftElement={<Image
+                className={'grayscale-70 brightness-40'}
+                src={'/gl.jpeg'} width={wz * 0.5} height={0} alt={'ad'}/>}
             hide={[
                 Surface.BOTTOM
             ]}

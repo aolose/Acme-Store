@@ -1,4 +1,4 @@
-import c from '@css/3d.module.scss'
+import c from '@css/app.module.scss'
 import clsx from "clsx";
 import type {CSSProperties} from "react";
 
@@ -43,6 +43,12 @@ export const Cube = ({
                          sizeZ = 150,
                          topX,
                          topZ,
+                         leftElement,
+                         rightElement,
+                         bottomElement,
+                         topElement,
+                         frontElement,
+                         backElement,
                          hide = []
                      }: CubeProps) => {
     let fbw = 0,
@@ -92,19 +98,31 @@ export const Cube = ({
 
     return <div className={c.baseCubeXYZ} style={style}>
         <div className={clsx(c.baseCubeRotate, isPyramid && c.basePyramid)}>
-            {show(Surface.BOTTOM) && <div className={clsx(c.baseWallBottom, bottom)}/>}
+            {show(Surface.BOTTOM) && <div className={clsx(c.baseWallBottom, bottom)}>
+                {bottomElement}
+            </div>}
             {show(Surface.BACK) && <div className={c.baseWallBack}>
-                <div className={clsx(c.innerBack, back)}/>
+                <div className={clsx(c.innerBack, back)}>
+                    {backElement}
+                </div>
             </div>}
             {show(Surface.RIGHT) && <div className={c.baseWallRight}>
-                <div className={clsx(c.innerRight, right)}/>
+                <div className={clsx(c.innerRight, right)}>
+                    {rightElement}
+                </div>
             </div>}
             {show(Surface.LEFT) && <div className={c.baseWallLeft}>
-                <div className={clsx(c.innerLeft, left)}/>
+                <div className={clsx(c.innerLeft, left)}>
+                    {leftElement}
+                </div>
             </div>}
-            {show(Surface.TOP) && <div className={clsx(c.baseWallTop, top)}/>}
+            {show(Surface.TOP) && <div className={clsx(c.baseWallTop, top)}>
+                {topElement}
+            </div>}
             {show(Surface.FRONT) && <div className={c.baseWallFront}>
-                <div className={clsx(c.innerFront, front)}></div>
+                <div className={clsx(c.innerFront, front)}>
+                    {frontElement}
+                </div>
             </div>}
             <div className={'absolute'}>
                 {children}

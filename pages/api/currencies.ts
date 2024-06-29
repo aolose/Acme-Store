@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { currencies } from "../../common/data";
-import { ApiCurrenciesResponse } from "../../common/types";
+import { currencies } from "@data";
+import { ApiCurrenciesResponse } from "@types";
 
 export default function handler(
   req: NextApiRequest,

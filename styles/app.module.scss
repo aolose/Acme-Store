@@ -17,9 +17,6 @@
   :global {
     div {
       transform-style: preserve-3d;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 }
@@ -50,7 +47,6 @@
 
 .baseWallTop {
   --rxv: 90deg;
-  background: #ddd;
 }
 
 .baseWallBottom {
@@ -75,7 +71,6 @@
 
 
 .innerRight {
-  background: #cacaca;
   filter: brightness(.8);
 }
 
@@ -113,7 +108,7 @@
 }
 
 .baseWallTop, .baseWallBottom {
-  background-color: #fff;
+  background: #fff;
   width: var(--wx);
   height: var(--wz);
   --tz: calc(var(--wy) / 2)
@@ -123,8 +118,7 @@
 .innerFront,
 .innerRight,
 .innerLeft {
-  position: absolute;
-  background-color: #fff;
+  background: #fff;
   transform-origin: bottom center;
   --fix-h: calc(var(--gap) / 2);
   transform: translateY(var(--fix-h, 0)) rotateX(var(--rr, 0deg));
@@ -136,8 +130,28 @@
 .baseWallBottom,
 .baseWallBack,
 .baseWallFront {
-  position: absolute;
   transform: rotateY(var(--ryv, 0deg)) rotateX(var(--rxv, 0deg)) translateZ(var(--tz));
+}
+
+.house,
+.item,
+.item,
+.innerBack,
+.innerFront,
+.innerRight,
+.innerLeft,
+.baseWallTop,
+.baseWallLeft,
+.baseWallRight,
+.baseWallBottom,
+.baseWallBack,
+.baseWallFront,
+.baseCubeXYZ,
+.baseCubeXYZ > div {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
 }
 
 .house {
@@ -262,6 +276,7 @@
 
 .item {
   font-size: 13px;
+  cursor: pointer;
   white-space: nowrap;
   height: 140px;
   flex-direction: column;
@@ -270,6 +285,7 @@
   filter: brightness(.7);
 
   & > div {
+    display: flex;
     animation: ry 3s linear infinite;
   }
 
@@ -302,4 +318,54 @@
 
 .bg4 {
   background-color: #511d57;
+}
+
+.board {
+  background: rgba(0, 0, 0, 0.74);
+  border-radius: 1rem;
+  filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, .8));
+  transition: .2s ease-in-out;
+  transform: translate3d(200%, 0, 0);
+  @media screen and (max-width: 1024px) {
+    transform: translate3d(0, -200%, 0);
+  }
+}
+
+.act {
+  transform: translate3d(0, 0, 0);
+}
+
+.cart {
+  background: rgba(19, 20, 23, 0.82);
+  top: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  width:400px;
+  filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, .5));
+  @media screen and (max-width: 1024px) {
+
+  }
+  @media screen and (max-width: 640px) {
+   width: auto;
+    left: 1rem;
+  }
+}
+
+.search {
+  * {
+    transition: .2s ease-in-out;
+  }
+
+  &:has(input:focus) {
+    input {
+      background: #11222d;
+      color: #fff;
+    }
+
+    background-color: #fff;
+
+    button {
+      color: #000;
+    }
+  }
 }

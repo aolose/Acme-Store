@@ -47,5 +47,17 @@ interface CubeProps extends Props {
     // Specifies the face of the cube to hide
     // default [0,0,0,0,0,0]
     // The six fields means: [top,bottom,left,right,front,back]
-    hide?: Surface[]
+    hide?: Surface[],
+    leftElement?: React.ReactNode,
+    rightElement?: React.ReactNode,
+    topElement?: React.ReactNode,
+    bottomElement?: React.ReactNode,
+    frontElement?: React.ReactNode,
+    backElement?: React.ReactNode,
+}
+
+type ProductId = Item['id'];
+type CartItem = {
+    quantity: number,
+    item: Item
 }

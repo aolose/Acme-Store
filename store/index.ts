@@ -1,16 +1,35 @@
-import {atom, useAtom} from 'jotai'
-import {Item} from "@types";
+import {atom, useAtom, useAtomValue} from 'jotai'
+import {Currency, CurrencyKey, Item} from "@types";
+const cartKey = 'cart'
 
-type ProductId = Item['id'];
-type CartItem = {
-    quantity: number,
-    item: Item
+const localCache = ()=>{
+    if(globalThis?.localStorage){
+        try {
+           const c = localStorage.getItem(cartKey)
+           if(c) return JSON.parse(c) as CartItem[];
+        }catch(e){}
+    }
+    return [] as CartItem[]
 }
 
-const cardItems = atom<CartItem[]>([])
+const cardItems = atom<CartItem[]>(localCache())
+const currency = atom<CurrencyKey>('usd')
+const currencyList = atom<Currency[]>([])
+
+export const useCurrencyList = () => useAtom(currencyList)
+
+export const useCurrency = () => {
+    const list = useAtomValue(currencyList)
+    const [k, sk] = useAtom(currency)
+    return [
+        list.find(a => a.key === k),
+        sk
+    ]
+}
 
 export const useCart = () => {
     const [items, setItems] = useAtom(cardItems)
+    const key = useAtomValue(currency)
     const findIndex = (id: ProductId) => items.findIndex(a => a.item.id === id)
     const addToCard = (item: Item, quantity = 1) => {
         const exist = findIndex(item.id)

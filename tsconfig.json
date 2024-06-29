@@ -5,6 +5,7 @@
       "@cpm/*": ["components/*"],
       "@store": ["store/index"],
       "@types": ["common/types"],
+      "@data": ["common/data"],
       "@public/*": ["public/*"],
     },
     "target": "es5",

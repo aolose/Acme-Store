@@ -14,6 +14,13 @@ const nextConfig = {
   // @see https://react.dev/learn/react-compiler
   experimental: {
     reactCompiler: true,
+  },
+  images:{
+    remotePatterns:[
+      {
+        hostname :'picsum.photos'
+      }
+    ]
   }
 }
 

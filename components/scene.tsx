@@ -1,11 +1,12 @@
 import clsx from "clsx";
-import css from "@css/3d.module.scss"
+import css from "@css/app.module.scss"
 import {useEffect} from "react";
 import {Ground} from "@cpm/ground";
 import {House} from "@cpm/house";
 
 export const Scene = ({children}: Props) => {
     useEffect(() => {
+        // Let the house  change angle as the mouse moves
         const mouseMoveListener = (e: MouseEvent) => {
             const y = e.pageX / window.innerWidth - 0.5;
             const x = e.pageY / window.innerHeight - 0.5;
