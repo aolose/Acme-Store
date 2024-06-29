@@ -18,7 +18,7 @@ export const CurrencyBtn = () => {
             list.filter(a => a.key !== currency.key)
                 .map((c, i) => {
                     const style = {
-                        '--t': `${-120 * (len-i-1)}%`
+                        '--t': `${-120 * (len - i - 1)}%`
                     } as CSSProperties;
                     // @ts-ignore
                     return <button key={c.key} style={style} onPointerUp={() => setCurrency(c.key)}>

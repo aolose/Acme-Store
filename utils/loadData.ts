@@ -17,7 +17,7 @@ export const loadCurrencyList = async () => {
 
 
 export const loadItems = (page = 1, search = '', size = 6) => {
-    const offset = page * size
+    const offset = (page - 1) * size
     const controller = new AbortController();
     const signal = controller.signal;
     return {
