@@ -1,5 +1,6 @@
 import {atom, useAtom, useAtomValue} from 'jotai'
 import {Currency, CurrencyKey, Item} from "@types";
+import {useEffect} from "react";
 
 const cartKey = 'cart'
 
@@ -18,7 +19,7 @@ const total = atom(1)
 export const useTotal = () => useAtom(total)
 
 // items of shopping cart
-const cardItems = atom<CartItem[]>(localCache())
+const cardItems = atom<CartItem[]>([])
 const currency = atom<CurrencyKey>('usd' as CurrencyKey)
 const currencyList = atom<Currency[]>([])
 
@@ -66,7 +67,14 @@ export const useCurrency = () => {
 }
 
 export const useCart = () => {
-    const [items, setItems] = useAtom(cardItems)
+    const [items, setItems_] = useAtom(cardItems)
+    useEffect(() => {
+        setItems_(localCache())
+    }, [])
+    const setItems = (items: CartItem[]) => {
+        localStorage.setItem(cartKey, JSON.stringify(items))
+        setItems_(items)
+    }
     const [currency] = useCurrency()
     const findIndex = (id: ProductId) => items.findIndex(a => a.item.id === id)
     const addToCard = (item: Item, quantity = 1) => {
@@ -88,7 +96,7 @@ export const useCart = () => {
         setItems(items.filter(a => a.item.id !== item.id))
     }
 
-    const cleanCart = ()=>{
+    const cleanCart = () => {
         setItems([])
     }
 

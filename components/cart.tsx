@@ -6,32 +6,6 @@ import clsx from "clsx";
 import {Orbitron} from 'next/font/google'
 
 const orbitron = Orbitron({subsets: ['latin']})
-const data: CartItem[] = [
-    {
-        quantity: 100, item: {
-            "id": "986a7c4e-7810-4318-bed4-281f23abf3fc",
-            "title": "Intelligent Cotton Bike",
-            "description": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
-            "imageSrc": "http://loremflickr.com/640/480/technics",
-            "price": 54087.89,
-            "priceCurrency": "jpy",
-            "createdAt": "2023-12-05T07:38:04.019Z",
-            "updatedAt": "1925-03-29T16:27:34.541Z"
-        }
-    },
-    {
-        quantity: 10, item: {
-            "id": "986c4e-7810-4318-bed4-281f23abf3fc",
-            "title": "Intelligent Cotton Bike",
-            "description": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
-            "imageSrc": "http://loremflickr.com/640/480/technics",
-            "price": 54087.89,
-            "priceCurrency": "jpy",
-            "createdAt": "2023-12-05T07:38:04.019Z",
-            "updatedAt": "1925-03-29T16:27:34.541Z"
-        }
-    },
-]
 
 export const Cart = () => {
     const {
