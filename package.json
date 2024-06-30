@@ -11,6 +11,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@iconify-json/carbon": "^1.1.36",
     "jotai": "^2.8.4",
     "next": "15.0.0-rc.0",
     "react": "19.0.0-rc-8971381549-20240625",
@@ -22,6 +23,7 @@
     "@playwright/test": "^1.45.0",
     "@types/node": "17.0.16",
     "@types/react": "17.0.39",
+    "@unocss/preset-icons": "^0.61.0",
     "@unocss/webpack": "^0.61.0",
     "babel-plugin-react-compiler": "0.0.0-experimental-696af53-20240625",
     "clsx": "^2.1.1",

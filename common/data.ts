@@ -1,4 +1,4 @@
-import { Currency, Item } from './types'
+import { Currency, Item } from '@types'
 
 
 export const currencies: Currency[] = [

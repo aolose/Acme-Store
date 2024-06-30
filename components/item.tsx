@@ -2,7 +2,7 @@ import {Cube, Surface} from "@cpm/cube";
 import t from '@css/app.module.scss'
 import clsx from "clsx";
 import {Item} from "@types";
-import {useCurrency} from "@store";
+import {useCart, useCurrency} from "@store";
 import {fmt} from "../utils";
 import {useEffect, useState} from "react";
 
@@ -41,9 +41,11 @@ export const Product = ({data, state}: {
     const [plusOnes, setPlus] = useState([] as number[])
     const [currency] = useCurrency()
     const t = selectTheme(data.id)
+    const {addToCard} = useCart()
     const click = () => {
         const t = Date.now()
         setPlus(plusOnes.concat(t))
+        addToCard(data)
     }
 
     useEffect(() => {

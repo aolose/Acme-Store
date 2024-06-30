@@ -17,8 +17,11 @@ const localCache = () => {
 const total = atom(1)
 export const useTotal = () => useAtom(total)
 const cardItems = atom<CartItem[]>(localCache())
-const currency = atom<CurrencyKey>('usd')
+const currency = atom<CurrencyKey>('usd' as CurrencyKey)
 const currencyList = atom<Currency[]>([])
+const showCart = atom<Boolean>(false)
+
+export const useCartBtn = () => useAtom(showCart)
 
 export const useCurrencyList = () => useAtom(currencyList)
 
@@ -37,7 +40,7 @@ export const useCurrency = () => {
 
 export const useCart = () => {
     const [items, setItems] = useAtom(cardItems)
-    const key = useAtomValue(currency)
+    const [currency] = useCurrency()
     const findIndex = (id: ProductId) => items.findIndex(a => a.item.id === id)
     const addToCard = (item: Item, quantity = 1) => {
         const exist = findIndex(item.id)
@@ -47,13 +50,17 @@ export const useCart = () => {
             setItems(items.slice())
         }
     }
-    const removeFromCard = (id: ProductId, quantity = 1) => {
-        const exist = findIndex(id)
+    const removeFromCard = (item: Item, quantity = 1) => {
+        const exist = findIndex(item.id)
         const q = items[exist].quantity -= quantity
         if (!q) setItems(items.slice(0, exist).concat(items.slice(exist + 1)))
         else setItems(items.slice())
     }
 
+    const cleanItem = (item: Item) => {
+        setItems(items.filter(a => a.item.id !== item.id))
+    }
+
     const total = items.reduce((a, b) => a + b.item.price * b.quantity, 0)
-    return [items, total, addToCard, removeFromCard]
+    return {currency, items, total, addToCard, removeFromCard, cleanItem}
 }

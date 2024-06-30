@@ -1,4 +1,4 @@
-import {Currency} from "@types";
+import type {Currency} from "@types";
 
 // format number to currency
 export const fmt = (n:number,c:Currency)=>{
