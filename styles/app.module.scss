@@ -245,12 +245,16 @@
 }
 
 .windowClip {
+  --p0: calc(var(--wx) - var(--wa));
+  --p1x: calc(var(--wx) - var(--wa));
+  --p1y: calc(var(--wy) - var(--wa));
+  --p2: calc(var(--wy) - var(--wa));
   clip-path: polygon(
                   0 0,
                   var(--wa) var(--wa),
-                  calc(var(--wx) - var(--wa)) var(--wa),
-                  calc(var(--wx) - var(--wa)) calc(var(--wy) - var(--wa)),
-                  var(--wa) calc(var(--wy) - var(--wa)),
+                  var(--p0) var(--wa),
+                  var(--p1x) var(--p1y),
+                  var(--wa) var(--p2),
                   var(--wa) var(--wa),
                   0 0,
                   0 var(--wy),
@@ -280,7 +284,7 @@
   flex-direction: column;
   transition: .2s ease-in-out;
   transform: translate3d(var(--ix, 0), var(--iy, 0), var(--deep)) scale(0);
-  filter: brightness(.5);
+  filter: brightness(.7) drop-shadow(1rem 1rem 1rem black);
   position: relative;
 
   &:global(.in) {
@@ -293,7 +297,7 @@
 
   &:hover {
     text-shadow: #007fda 0 0 5px;
-    filter: brightness(1) drop-shadow(0px 2px 15px rgb(255, 255, 255));
+    filter: brightness(1) drop-shadow(0px 2px 15px rgb(251, 208, 99));
     transform: translate3d(var(--ix, 0), var(--iy, 0), calc(var(--deep) + 30px));
 
     & > div {
@@ -327,13 +331,14 @@
 }
 
 .board {
-  background: rgba(0, 0, 0, 0.74);
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 1rem;
   filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, .8));
   transition: .2s ease-in-out;
-  transform: translate3d(200%, 0, 0);
+  transform: translate3d(150%, 0, 0);
   @media screen and (max-width: 1024px) {
-    transform: translate3d(0, -200%, 0);
+    transform: translate3d(0, -150%, 0);
   }
 }
 
@@ -362,12 +367,14 @@
 
   &:global(.act) {
     transform: translate3d(0, 0, 0);
-    &+:global(.msk){
+
+    & + :global(.msk) {
       opacity: 1;
       pointer-events: auto;
     }
   }
-  &+:global(.msk){
+
+  & + :global(.msk) {
     transition: .3s ease-in-out;
     position: fixed;
     left: 0;
@@ -380,19 +387,22 @@
     opacity: 0;
     pointer-events: none;
   }
+
   :global {
-    .total{
+    .total {
       color: #999;
       align-items: center;
       display: flex;
       justify-content: space-between;
       padding: 1rem;
     }
+
     .t-cur {
       font-size: 1.4rem;
       font-weight: 200;
       color: #d2a679;
     }
+
     .check {
       padding: 1px;
       position: relative;
@@ -408,9 +418,11 @@
       color: #f6c74c;
       font-size: 1rem;
       transition: .1s ease-in-out;
-      &:active{
+
+      &:active {
         background: #e4e6d5;
-        &:before{
+
+        &:before {
           background: #070b12;
         }
       }
@@ -636,7 +648,8 @@
 
 .plus {
   z-index: 100;
-  font-size: 12px;
+  font-weight: 700;
+  font-size: 14px;
   position: absolute;
   opacity: 0;
   left: 50%;
@@ -703,11 +716,13 @@
 }
 
 .cartBtn {
-  opacity: .5;
+  opacity: .8;
   cursor: pointer;
-  &:hover{
+
+  &:hover {
     opacity: 1;
   }
+
   transition: .2s ease-in-out;
   border-radius: 50%;
   position: fixed;
@@ -736,6 +751,7 @@
     font-size: 12px;
     width: 2em;
     height: 2em;
+    font-weight: 700;
     color: #000;
     background: #ffffff;
     left: 80%;

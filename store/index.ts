@@ -16,10 +16,37 @@ const localCache = () => {
 // total page
 const total = atom(1)
 export const useTotal = () => useAtom(total)
+
+// items of shopping cart
 const cardItems = atom<CartItem[]>(localCache())
 const currency = atom<CurrencyKey>('usd' as CurrencyKey)
 const currencyList = atom<Currency[]>([])
+
+// display shopping cart
 const showCart = atom<Boolean>(false)
+
+// show product preview
+const showDetail = atom<boolean>(false)
+// preview product
+const previewProduct = atom<Item>({} as Item)
+
+export const usePreview = () => {
+    const [show, seShow] = useAtom(showDetail)
+    const [product, setProduct] = useAtom(previewProduct)
+
+    return {
+        item: product,
+        showed: show,
+        hide: (item: Item) => {
+            if (item.id === product.id)
+                seShow(false)
+        },
+        show: (item: Item) => {
+            setProduct(item)
+            seShow(true)
+        }
+    }
+}
 
 export const useCartBtn = () => useAtom(showCart)
 

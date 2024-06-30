@@ -2,7 +2,7 @@ import {Cube, Surface} from "@cpm/cube";
 import t from '@css/app.module.scss'
 import clsx from "clsx";
 import {Item} from "@types";
-import {useCart, useCurrency} from "@store";
+import {useCart, useCurrency, usePreview} from "@store";
 import {fmt} from "../utils";
 import {useEffect, useState} from "react";
 
@@ -39,6 +39,7 @@ export const Product = ({data, state}: {
     data: Item
 }) => {
     const [plusOnes, setPlus] = useState([] as number[])
+    const {show, hide} = usePreview()
     const [currency] = useCurrency()
     const t = selectTheme(data.id)
     const {addToCard} = useCart()
@@ -59,7 +60,12 @@ export const Product = ({data, state}: {
         return () => clearTimeout(t)
     }, [plusOnes])
 
-    return <div className={clsx(item, state)} onClick={click}>
+
+    return <div className={clsx(item, state)} onClick={click} onPointerEnter={()=>{
+        show(data)
+    }} onPointerLeave={()=>{
+        hide(data)
+    }}>
         {plusOnes.map((c) => <PlusOne id={c} key={c}/>)}
         <p className={'color-light text-sm-0'}>{data.title}</p>
         <div className={'flex-1 relative bg-amber justify-center items-center'}>

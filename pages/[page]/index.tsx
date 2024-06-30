@@ -1,5 +1,5 @@
 import {Scene} from "@cpm/scene";
-import {Board} from "@cpm/board";
+import {Preview} from "@cpm/preview";
 import {Search} from "@cpm/search";
 import {Cart} from "@cpm/cart";
 import {CurrencyBtn} from "@cpm/currency";
@@ -9,7 +9,7 @@ import {CartBtn} from "@cpm/cartBtn";
 const ProductList = () => {
     return <div className={'w-full '}>
         <Scene/>
-        <Board/>
+        <Preview/>
         <Search/>
         <Cart/>
         <CurrencyBtn/>
