@@ -331,6 +331,7 @@
 }
 
 .board {
+  pointer-events: none;
   font-size: 14px;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 1rem;
