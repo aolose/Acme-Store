@@ -18,7 +18,9 @@ export const Preview = () => {
     return <div className={clsx('fixed flex p-6 max-h-full ', showed && t.act,
         'flex-wrap lg:w-[300px] flex-row ',
         'lg:flex-col right-10 top-[25%]',
-        'max-lg:right-auto max-lg:left-2 max-lg:right-2 max-lg:top-5', t.board)}>
+        'max-lg:right-auto max-lg:left-2 max-lg:right-2 max-lg:top-5', t.board)}
+        role={'contentinfo'}
+    >
         <h1 className={'color-light lh-relaxed flex my-4 max-lg:w-full max-lg:my-2 px-1 items-center'}>
             <span className={'flex-1'}>{title}</span>
             <span className={'text-sm color-neutral ml-3'}>{fmt(price, currency)}</span>

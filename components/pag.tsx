@@ -34,6 +34,7 @@ export const PageButtons = () => {
             }
             buttons.push(<Link
                 key={a}
+                role={'link'}
                 href={`/${a}${search ? `?s=${search}` : ''}`}
                 className={
                     clsx(

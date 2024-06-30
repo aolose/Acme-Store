@@ -7,7 +7,7 @@ import Head from "next/head";
 function MyApp({Component, pageProps}: AppProps) {
     return <>
         <Head>
-            <title>Home</title>
+            <title>ACME STORE</title>
         </Head>
         <Component {...pageProps} />
     </>

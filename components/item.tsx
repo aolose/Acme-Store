@@ -61,7 +61,7 @@ export const Product = ({data, state}: {
     }, [plusOnes])
 
 
-    return <div className={clsx(item, state)} onClick={click} onPointerEnter={()=>{
+    return <div className={clsx(item, state)} role={'listitem'} onClick={click} onPointerEnter={()=>{
         show(data)
     }} onPointerLeave={()=>{
         hide(data)
@@ -84,7 +84,6 @@ export const Product = ({data, state}: {
             />
         </div>
         <p className={'color-amber text-sm-1'}>
-            <span>{currency.symbol}</span>
             <span>{fmt(data.price * currency.usdCoef, currency)}</span>
         </p>
     </div>

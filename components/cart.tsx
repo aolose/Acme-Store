@@ -49,7 +49,9 @@ export const Cart = () => {
             'fixed flex flex-col rounded-lg',
             t.cart,
             act && 'act'
-        )}>
+        )}
+            role={'list'}
+        >
             <div className={'color-light p-2 px-8 mt-2'}>
                 SHOPPING CART
                 <button

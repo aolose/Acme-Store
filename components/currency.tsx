@@ -21,13 +21,16 @@ export const CurrencyBtn = () => {
                         '--t': `${-120 * (len - i - 1)}%`
                     } as CSSProperties;
                     // @ts-ignore
-                    return <button key={c.key} style={style} onPointerUp={() => setCurrency(c.key)}>
+                    return <button
+                        role={'button'}
+                        name={c.key}
+                        key={c.key} style={style} onPointerUp={() => setCurrency(c.key)}>
                         <span className={'font-700'}>{c.symbol}</span>
                         <span className={'uppercase'}>{c.key}</span>
                     </button>
                 })
         }
-        <button className={'cur'} key={'-'}>
+        <button className={'cur'} key={'-'} name={'cur'} role={'button'}>
             <span>{currency.symbol}</span>
             <span className={'uppercase font-size-3 font-400'}>{currency.key}</span>
         </button>
