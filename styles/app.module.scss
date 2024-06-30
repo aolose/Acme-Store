@@ -339,6 +339,7 @@
   transform: translate3d(150%, 0, 0);
   @media screen and (max-width: 1024px) {
     transform: translate3d(0, -150%, 0);
+    top:5rem
   }
 }
 
@@ -758,8 +759,22 @@
     top: -.5rem;
     position: absolute;
   }
+}
 
-  :global {
+.brand{
+  box-shadow: inset #000 -.1rem .1rem .1rem,inset 50px -10px 50px rgba(0, 0, 0, 0.3);
+  border: .2rem solid rgba(78, 48, 37, 0.2);
+  background: #1d1812 url("https://www.transparenttextures.com/patterns/vichy.png");
+    :global(span){
+      color: #968e86;
+      opacity: .7;
+      text-shadow: -3px 2px 2px rgba(0, 0, 0, 0.76), -.1rem 0 1.4rem #ffffff;
+      font-size: 2rem;
+    }
+}
 
-  }
+.brandShadow{
+  background: rgba(0, 0, 0, .5);
+  filter:blur(10px);
+  transform: scaleY(1.4) skewX(-10deg);
 }

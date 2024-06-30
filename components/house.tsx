@@ -14,7 +14,8 @@ export const House = ({
     const {
         wood, cloth, decorate,
         shadow, decorateShadow, rocket,
-        windowClip, innerWall,glass,glassFront
+        windowClip, innerWall,glass,glassFront,
+        brand,brandShadow
     } = c
     const wallGap = 40
     const wallDeep = 200
@@ -92,6 +93,38 @@ export const House = ({
                   Surface.BOTTOM,
                   Surface.TOP,
               ]}
+        />
+        {/* brand's shadow */}
+        <Cube
+            sizeX={300}
+            sizeY={120}
+            sizeZ={0}
+            y={movY(-wy,-140)}
+            z={164}
+            rx={63}
+            back={brandShadow}
+            hide={[
+                Surface.BOTTOM,
+                Surface.TOP,
+                Surface.LEFT,
+                Surface.RIGHT,
+                Surface.FRONT
+            ]}
+        />
+        {/* brand */}
+        <Cube
+            frontElement={<span>ACME STORE</span>}
+            front={brand}
+            left={brand}
+            top={brand}
+            right={brand}
+            bottom={brand}
+            back={brand}
+            sizeX={300}
+            sizeY={80}
+            sizeZ={15}
+            y={movY(-wy,-160)}
+            z={220}
         />
         {/* Roof */}
         <Cube sizeX={wx + expand}
