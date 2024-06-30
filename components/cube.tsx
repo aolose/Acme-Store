@@ -26,6 +26,7 @@ import type {CSSProperties} from "react";
  * @constructor
  */
 export const Cube = ({
+                         className,
                          children,
                          x = 0,
                          y = 0,
@@ -96,7 +97,7 @@ export const Cube = ({
 
     const show = (surface: Surface) => !hide.includes(surface)
 
-    return <div className={c.baseCubeXYZ} style={style}>
+    return <div className={clsx(c.baseCubeXYZ, className)} style={style}>
         <div className={clsx(c.baseCubeRotate, isPyramid && c.basePyramid)}>
             {show(Surface.BOTTOM) && <div className={clsx(c.baseWallBottom, bottom)}>
                 {bottomElement}

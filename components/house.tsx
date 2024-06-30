@@ -2,20 +2,19 @@ import {Cube, Surface} from "@cpm/cube";
 import c from '@css/app.module.scss'
 import clsx from "clsx";
 import Image from "next/image";
-import type {ReactNode} from "react";
+import {ReactNode} from "react";
 
 export const House = ({
                           children = [] as ReactNode[]|ReactNode,
                           wx = 640, wy = 400,
                           wz = 500,
                           ry = 10,
-                          rx = 0,
-                          loading = false,
+                          rx = 0
                       }) => {
     const {
         wood, cloth, decorate,
         shadow, decorateShadow, rocket,
-        windowClip, innerWall
+        windowClip, innerWall,glass,glassFront
     } = c
     const wallGap = 40
     const wallDeep = 200
@@ -35,6 +34,7 @@ export const House = ({
         <div className={shadow}/>
         {/* Ground */}
         <Cube
+            className={'pointer-events-none'}
             sizeX={wx + 180}
             sizeY={10}
             sizeZ={wz + 180}
@@ -73,6 +73,7 @@ export const House = ({
               left={decorateShadow}
               back={decorateShadow}
               right={decorateShadow}
+              className={'pointer-events-none'}
               hide={[
                   Surface.BOTTOM,
                   Surface.TOP,
@@ -123,5 +124,21 @@ export const House = ({
         >
             {children}
         </Cube>
+        {/* class window */}
+        <Cube
+            className={'pointer-events-none'}
+            z={wz / 2 - 5}
+            sizeX={wx - wallGap * 2}
+            sizeY={wy - wallGap * 2}
+            sizeZ={10}
+            right={glass}
+            left={glass}
+            bottom={glass}
+            front={glassFront}
+            hide={[
+                Surface.TOP,
+                Surface.BACK
+            ]}
+        />
     </div>
 }

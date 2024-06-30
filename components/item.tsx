@@ -4,7 +4,7 @@ import clsx from "clsx";
 import {Item} from "@types";
 import {useCurrency} from "@store";
 import {fmt} from "../utils";
-import { useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 
 const {item, gift, bg0, bg1, bg2, bg3, bg4} = t
 
@@ -34,7 +34,8 @@ const PlusOne = ({id = 1}) => {
     return <span className={clsx(s && 'act', t.plus)} style={style}>+1</span>
 }
 
-export const Product = ({data}: {
+export const Product = ({data, state}: {
+    state: 'in' | 'out'
     data: Item
 }) => {
     const [plusOnes, setPlus] = useState([] as number[])
@@ -56,7 +57,7 @@ export const Product = ({data}: {
         return () => clearTimeout(t)
     }, [plusOnes])
 
-    return <div className={item} onClick={click}>
+    return <div className={clsx(item, state)} onClick={click}>
         {plusOnes.map((c) => <PlusOne id={c} key={c}/>)}
         <p className={'color-light text-sm-0'}>{data.title}</p>
         <div className={'flex-1 relative bg-amber justify-center items-center'}>

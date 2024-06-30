@@ -12,6 +12,7 @@ interface PageProps {
 }
 
 interface CubeProps extends Props {
+    className?:string,
     // position at x-axis
     x?: number,
     // position at y-axis
