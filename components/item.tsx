@@ -84,7 +84,7 @@ export const Product = ({data, state}: {
             />
         </div>
         <p className={'color-amber text-sm-1'}>
-            <span>{fmt(data.price * currency.usdCoef, currency)}</span>
+            <span>{fmt(data.price, currency)}</span>
         </p>
     </div>
 }

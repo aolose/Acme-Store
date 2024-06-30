@@ -26,7 +26,7 @@ export const loadItems = (page = 1, search = '', size = 6) => {
                 return handleFetch<ApiItemsResponse>(a)
             })
             .then(async  a => {
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 500));
                 return {
                     total: Math.ceil(a.total / size),
                     items: a.items
