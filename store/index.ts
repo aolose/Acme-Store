@@ -88,6 +88,10 @@ export const useCart = () => {
         setItems(items.filter(a => a.item.id !== item.id))
     }
 
+    const cleanCart = ()=>{
+        setItems([])
+    }
+
     const total = items.reduce((a, b) => a + b.item.price * b.quantity, 0)
-    return {currency, items, total, addToCard, removeFromCard, cleanItem}
+    return {currency, items, total, addToCard, removeFromCard, cleanItem, cleanCart}
 }

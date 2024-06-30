@@ -39,10 +39,18 @@ export const Cart = () => {
         total,
         addToCard,
         removeFromCard,
-        cleanItem
+        cleanItem,
+        cleanCart
     } = useCart()
 
     const [act, show] = useCartBtn()
+    const checkout = ()=>{
+       const ok =  window.confirm('Continue to pay?')
+       if(ok){
+           cleanCart()
+           show(false)
+       }
+    }
 
     return <>
         <div className={clsx(
@@ -96,6 +104,9 @@ export const Cart = () => {
                 </span>
             </div>
             <button
+                onClick={checkout}
+                role={'button'}
+                name={'checkout'}
                 className={'check'}>
                 <i className={' i-carbon:shopping-cart'}></i>
                 <span>Checkout</span>
