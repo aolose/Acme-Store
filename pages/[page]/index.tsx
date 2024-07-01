@@ -6,8 +6,8 @@ import {CurrencyBtn} from "@cpm/currency";
 import {PageButtons} from "@cpm/pag";
 import {CartBtn} from "@cpm/cartBtn";
 
-const ProductList = () => {
-    return <div className={'w-full '}>
+const Index = () => {
+    return <>
         <Scene/>
         <Preview/>
         <Search/>
@@ -15,7 +15,7 @@ const ProductList = () => {
         <CurrencyBtn/>
         <PageButtons/>
         <CartBtn/>
-    </div>
+    </>
 };
 
-export default ProductList;
+export default Index;

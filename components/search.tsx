@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {useRouter} from "next/router";
 import t from '@css/app.module.scss'
-import {useSearch} from "../store/hooks";
+import {useSearch} from "@store";
 
 export const Search = () => {
     const s = useSearch('s')

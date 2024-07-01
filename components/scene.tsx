@@ -3,7 +3,7 @@ import css from "@css/app.module.scss"
 import {useEffect, useState} from "react";
 import {Ground} from "@cpm/ground";
 import {House} from "@cpm/house";
-import {usePageData} from "../store/hooks";
+import {usePageData} from "@store";
 import {Item} from "@types";
 import {Product} from "@cpm/item";
 

@@ -1,6 +1,9 @@
 import {atom, useAtom, useAtomValue} from 'jotai'
 import {Currency, CurrencyKey, Item} from "@types";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {useSearchParams} from "next/navigation";
+import {useRouter} from "next/router";
+import {loadItems} from "../utils/loadData";
 
 const cartKey = 'cart'
 
@@ -102,4 +105,30 @@ export const useCart = () => {
 
     const total = items.reduce((a, b) => a + b.item.price * b.quantity, 0)
     return {currency, items, total, addToCard, removeFromCard, cleanItem, cleanCart}
+}
+
+
+export const useSearch = (key: string = 's') => {
+    const searchParams = useSearchParams()
+    return searchParams.get(key) || new URL(globalThis?.location?.href || '', 'http://a').searchParams.get(key) || ''
+}
+
+export const usePageData = (cb: (items: Item[]) => void) => {
+    const router = useRouter()
+    const [total, setTotal] = useTotal()
+    const search = useSearch('s')
+    const [products, setProducts] = useState([] as Item[])
+    const p = +(router.query.page || 1)
+    const [loading, setLoading] = useState(false)
+    useEffect(() => {
+        setLoading(true)
+        const {result, cancel} = loadItems(p, search)
+        result.then(a => {
+            setTotal(a.total)
+            cb(a.items)
+            setLoading(false)
+        })
+        return cancel
+    }, [p, search])
+    return loading
 }

@@ -2,9 +2,8 @@ import {useRouter} from "next/router";
 import clsx from "clsx";
 import {ReactNode} from "react";
 import Link from "next/link";
-import {useSearch} from "../store/hooks";
 import t from '@css/app.module.scss'
-import {useTotal} from "@store";
+import {useTotal,useSearch} from "@store";
 
 export const PageButtons = () => {
     const search = useSearch()
