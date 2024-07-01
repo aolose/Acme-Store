@@ -26,10 +26,10 @@ export const Preview = () => {
             <span className={'text-sm color-neutral ml-3'}>{fmt(price, currency)}</span>
         </h1>
         <div className={'w-full h-[150px] relative bg-amber rounded-lg overflow-hidden max-lg:w-[100px] max-lg:h-[100px]'}>
-            <Image
+            {imageSrc && <Image
                 fill={true}
                 src={imageSrc} alt={'name'}
-            />
+            />}
         </div>
         <div className={'flex-1 items-start justify-items-start max-lg:ml-4'}>
             <p className={'color-blueGray py-4'}>
