@@ -7,7 +7,7 @@
       "@store": ["store/index"],
       "@types": ["common/types"],
       "@data": ["common/data"],
-      "@public/*": ["public/*"],
+      "@public/*": ["public/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

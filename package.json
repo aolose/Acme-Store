@@ -8,7 +8,8 @@
     "lint": "next lint",
     "lint-fix": "next lint --fix",
     "test": "playwright test",
-    "generate": "node _generator.js"
+    "generate": "node _generator.js",
+    "prettier": "pnpm exec prettier . --write"
   },
   "type": "module",
   "dependencies": {
@@ -30,6 +31,8 @@
     "clsx": "^2.1.1",
     "eslint": "^8.57.0",
     "eslint-config-next": "15.0.0-rc.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.2",
     "sass": "^1.77.6",
     "typescript": "4.9.5",
     "unocss": "^0.61.0"

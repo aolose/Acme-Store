@@ -4,7 +4,7 @@ import { ApiCurrenciesResponse } from "@types";
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ApiCurrenciesResponse>
+  res: NextApiResponse<ApiCurrenciesResponse>,
 ) {
   res.status(200).json(currencies);
 }
