@@ -1,115 +1,66 @@
-import {test, expect} from '@playwright/test';
+import { expect, test as base } from "@playwright/test";
+import { App } from "./app";
 
-const APP_HOME = 'http://localhost:3000';
-
-test('has title', async ({page}) => {
-    await page.goto(APP_HOME);
-    await expect(page).toHaveTitle(/ACME STORE/);
+const test = base.extend<{ app: App }>({
+  app: async ({ page }, use) => {
+    const app = new App(page);
+    await app.goto();
+    await expect(app.product).toHaveCount(6);
+    await use(app);
+  },
 });
 
-test('Change Pagination', async ({page}) => {
-    await page.goto(APP_HOME);
-    const links = page.getByRole('link')
-    const nextPage = links.filter({hasText: '2'})
-    await nextPage.click()
-    await expect(page).toHaveURL(`${APP_HOME}/2`);
+test("Change Pagination", async ({ app }) => {
+  await expect(app.paging).toHaveCount(4);
+  await app.clickNthPag(2);
+  await app.page.screenshot();
+  await expect(app.page).toHaveURL(`${app.baseUrl}/3`);
 });
 
-
-test('Change URL By Search', async ({page}) => {
-    await page.goto(APP_HOME);
-    const input = await page.$('input')
-    await input?.click()
-    const search = 'test111'
-    await page.keyboard.type(search)
-    await page.keyboard.press('Enter')
-    await expect(page).toHaveURL(`${APP_HOME}/1?s=${search}`);
+test("Change URL By Search", async ({ app }) => {
+  const search = "test";
+  await app.searchText(search);
+  await expect(app.page).toHaveURL(`${app.baseUrl}/1?s=${search}`);
 });
 
-test('Search', async ({page}) => {
-    await page.goto(APP_HOME);
-    const text = 'intelligent'
-    await page.getByRole('search').fill(text)
-    await page.keyboard.press('Enter')
-    await page.isVisible('.in')
-    await page.hover('.in')
-    const preview = page.getByRole('contentinfo')
-    await expect(preview).toBeVisible()
-    await expect(preview).toContainText(new RegExp(text, 'i'))
-})
+test("Search", async ({ app }) => {
+  const text = "intelligent";
+  await app.searchText(text);
+  await expect(app.product.first()).toBeVisible();
+  await app.hoverProduct();
+  await expect(app.previewCard).toBeVisible();
+  await expect(app.previewCard).toHaveText(new RegExp(text, "i"));
+});
 
-test('Add to Shopping Cart', async ({page}) => {
-    await page.goto(APP_HOME);
-    await page.isVisible('.in')
+test("Add to Shopping Cart", async ({ app }) => {
+  await app.addItem(0, 10);
+  await app.addItem(1, 1);
+  await expect(app.cartTrigger).toHaveText("11");
+  await app.cartTrigger.click();
+  await expect(app.cart).toBeVisible();
+  await expect(app.cartItem).toHaveCount(2);
+  await app.increaseQuantityOfCartItem(1);
+  await expect(app.cartTrigger).toHaveText("12");
+  await app.reduceQuantityOfCartItem(0);
+  await expect(app.cartTrigger).toHaveText("11");
+  await expect(app.cartItem).toHaveCount(1);
+  await app.removeCartItem();
+  await expect(app.cartItem).toHaveCount(0);
+});
 
-    const items = page.getByRole('listitem')
-    const item = items.first()
+test("Change currency", async ({ app }) => {
+  await app.currencyTrigger.click();
+  await expect(app.currency.first()).toBeVisible();
+  const [symbol] = await app.selectCurrency(3);
+  await expect(app.product.first().locator(app.price)).toHaveText(
+    new RegExp(symbol),
+  );
+});
 
-    await expect(item).toBeVisible()
-
-    await item.click()
-    await item.click()
-
-    const cartBtn = page.locator('//button[@name="shoppingCartBtn"]')
-    await expect(cartBtn).toBeVisible()
-
-    await expect(cartBtn).toContainText(/2/)
-    await cartBtn?.click()
-
-    const cart = page.getByRole('list')
-    await expect(cart).toBeVisible()
-    const optBtn = page.locator('//div[contains(@class,"opt")]/button')
-
-    const delItem = optBtn.first()
-    const addItem =optBtn.last()
-    const quantity =  page.locator('//div[contains(@class,"opt")]/span').last()
-
-    await expect(quantity).toContainText('2')
-    await delItem.click()
-    await expect(quantity).toContainText('1')
-    await addItem.click()
-    await expect(quantity).toContainText('2')
-})
-
-test('Change currency', async ({page}) => {
-    await page.goto(APP_HOME);
-    await page.isVisible('.in')
-    const items = page.getByRole('listitem')
-    const item = items.first()
-
-    await expect(item).toContainText(/\$\d+/)
-
-    const currencyChangeButton = await page.$('[name="cur"].cur')
-    await currencyChangeButton?.focus()
-    const jpyBtn = page.getByRole('button', {name: 'jpy'})
-    await expect(jpyBtn).toBeVisible()
-    await jpyBtn?.click()
-    await expect(item).toContainText(/¥\w+/)
-})
-
-test('Checkout', async ({page}) => {
-    await page.goto(APP_HOME);
-    await page.isVisible('.in')
-
-    const cartBtn = await page.$('[name=shopping-cart-btn]')
-    const items =page.locator('css=.in')
-    const item = items.first()
-
-    await expect(item).toBeVisible()
-    expect(cartBtn).toBeTruthy()
-
-    await item.click()
-    await cartBtn?.click()
-
-    const cardItems =  page.locator('css=.cart-item')
-    await expect(cardItems).toBeVisible()
-
-    page.on('dialog', dialog => dialog.accept());
-
-    const checkOut = page.getByRole('button', {name: 'checkout'})
-
-    await expect(checkOut).toBeVisible()
-
-    await checkOut.click()
-    await expect(cardItems).toBeHidden()
-})
+test("Checkout", async ({ app }) => {
+  await app.addItem(1, 10);
+  await app.addItem(2, 10);
+  await app.cartTrigger.click();
+  await app.cartCheckout();
+  await expect(app.cartItem).toHaveCount(0);
+});
