@@ -13,7 +13,6 @@ const test = base.extend<{ app: App }>({
 test("Change Pagination", async ({ app }) => {
   await expect(app.paging).toHaveCount(4);
   await app.clickNthPag(2);
-  await app.page.screenshot();
   await expect(app.page).toHaveURL(`${app.baseUrl}/3`);
 });
 
