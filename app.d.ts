@@ -46,14 +46,18 @@ interface CubeProps extends Props {
   // top surface z-axis width, default same as widthZ
   topZ?: number;
   // Specifies the face of the cube to hide
-  // default [0,0,0,0,0,0]
-  // The six fields means: [top,bottom,left,right,front,back]
   hide?: Surface[];
+  // add element to left surface
   leftElement?: React.ReactNode;
+  // add element to right surface
   rightElement?: React.ReactNode;
+  // add element to top surface
   topElement?: React.ReactNode;
+  // add element to bottom surface
   bottomElement?: React.ReactNode;
+  // add element to front surface
   frontElement?: React.ReactNode;
+  // add element to back surface
   backElement?: React.ReactNode;
 }
 
