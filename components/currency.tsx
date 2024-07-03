@@ -6,11 +6,6 @@ import t from "@css/app.module.scss";
 export const CurrencyBtn = () => {
   const [list, setList] = useCurrencyList();
   const [currency, setCurrency] = useCurrency();
-  useEffect(() => {
-    if (!list.length) {
-      loadCurrencyList().then(setList);
-    }
-  }, [list.length]);
   const len = list.length;
   return (
     <div className={t.btnCurrency}>

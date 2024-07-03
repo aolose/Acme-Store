@@ -3,7 +3,7 @@ import { Currency, CurrencyKey, Item } from "@types";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
-import { loadItems } from "../utils/loadData";
+import { loadCurrencyList, loadItems } from "../utils/loadData";
 
 const cartKey = "cart";
 
@@ -126,14 +126,27 @@ export const useSearch = (key: string = "s") => {
   );
 };
 
+export const usdCoefMap: USDCoefMap = {};
+
 export const usePageData = (cb: (items: Item[]) => void) => {
   const router = useRouter();
-  const [total, setTotal] = useTotal();
+  const [, setTotal] = useTotal();
   const search = useSearch("s");
   const [products, setProducts] = useState([] as Item[]);
   const p = +(router.query.page || 1);
   const [loading, setLoading] = useState(false);
+  const [list, setList] = useCurrencyList();
   useEffect(() => {
+    loadCurrencyList().then((list) => {
+      list.forEach(({ key, usdCoef }) => {
+        usdCoefMap[key] = usdCoef;
+      });
+      setList(list);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!list.length) return;
     setLoading(true);
     const { result, cancel } = loadItems(p, search);
     result.then((a) => {
@@ -142,6 +155,6 @@ export const usePageData = (cb: (items: Item[]) => void) => {
       setLoading(false);
     });
     return cancel;
-  }, [p, search]);
+  }, [p, search, list]);
   return loading;
 };

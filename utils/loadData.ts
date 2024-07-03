@@ -1,5 +1,5 @@
-import { items } from "@data";
-import { ApiItemsRequest, ApiItemsResponse, Currency } from "@types";
+import { ApiItemsResponse, Currency } from "@types";
+import { usdCoefMap } from "@store";
 
 const handleFetch = async <T>(result: Response) => {
   if (result.status === 200) {
@@ -28,6 +28,14 @@ export const loadItems = (page = 1, search = "", size = 6) => {
       })
       .then(async (a) => {
         await new Promise((resolve) => setTimeout(resolve, 500));
+        // Align currency units
+        a.items.forEach((a) => {
+          if (a.priceCurrency !== "usd") {
+            const rate = usdCoefMap[a.priceCurrency];
+            if (!rate) throw new Error("unknown currency");
+            a.price = a.price / rate;
+          }
+        });
         return {
           total: Math.ceil(a.total / size),
           items: a.items,

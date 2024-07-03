@@ -66,3 +66,4 @@ type CartItem = {
   quantity: number;
   item: Item;
 };
+type USDCoefMap = { [key in CurrencyKey]?: number };
