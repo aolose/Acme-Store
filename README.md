@@ -1,3 +1,11 @@
+This was a homework assignment for a job position, and I wanted to share it because I enjoyed it. Instead of making it a boring, lifeless page, I tried out some of the things I wanted to try, like using the latest react 15, like integrating playwright， like creating a 3D scene with CSS and DIVs. 
+
+
+Although I was eliminated without any feedback ( Of course, after all, what I did is a liiiiiiiiittle different from the wireframe. 🤣), I was still very happy with this technical task assignment. The result is not important, I enjoy the process, and I also understand one thing, what I pursue is not skills, but creation.
+
+![image](https://github.com/aolose/Acme-Store/assets/7620293/3f34d7b4-7ff4-4f3f-93d5-0eb32e46f1f4)
+
+
 # Autify Front-end Assignment
 
 Thank you for participating in Autify's front-end technical assignment. Please read the introductions carefully, and let us know if you have any questions. If you bump into any issues during the assignment, feel free to reach us out.
