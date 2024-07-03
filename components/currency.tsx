@@ -1,6 +1,5 @@
 import { useCurrency, useCurrencyList } from "@store";
 import { type CSSProperties, useEffect } from "react";
-import { loadCurrencyList } from "../utils/loadData";
 import t from "@css/app.module.scss";
 
 export const CurrencyBtn = () => {
