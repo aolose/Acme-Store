@@ -1,4 +1,4 @@
-This was a homework assignment for a job position, and I wanted to share it because I enjoyed it. Instead of making it a boring, lifeless page, I tried out some of the things I wanted to try, like using the latest react 15, like integrating playwright， like creating a 3D scene with CSS and DIVs. 
+This was a homework assignment for a job position, and I wanted to share it because I enjoyed it. Instead of making it a boring, lifeless page, I tried out some of the things I wanted to try, like using the latest next 15, like integrating playwright， like creating a 3D scene with CSS and DIVs. 
 
 
 Although I was eliminated without any feedback ( Of course, after all, what I did is a liiiiiiiiittle different from the wireframe. 🤣), I was still very happy with this technical task assignment. The result is not important, I enjoy the process, and I also understand one thing, what I pursue is not skills, but creation.
