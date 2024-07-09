@@ -6,27 +6,6 @@ Although I was eliminated without any feedback ( Of course, after all, what I di
 ![image](https://github.com/aolose/Acme-Store/assets/7620293/3f34d7b4-7ff4-4f3f-93d5-0eb32e46f1f4)
 
 
-# Autify Front-end Assignment
-
-Thank you for participating in Autify's front-end technical assignment. Please read the introductions carefully, and let us know if you have any questions. If you bump into any issues during the assignment, feel free to reach us out.
-
-## Instruction
-
-When you finish the assignment
-
-1. Create a private repository in your own GitHub account
-2. Push this project to that repository
-3. Invite @CYBAI and @ykhs as collaborators
-
-## Tips
-
-1. Decide on your front-end stack. You are free to use the modern front-end technologies of your choice for things like styling, testing, linting etc. You are also free to utilize any tool, library, UI toolkit etc. that you normally use in your projects. It's an empty canvas, and you're the artist! We only ask you to make sure to use **React** and **Typescript**.
-
-2. You will work on the provided [Next.js](https://nextjs.org/docs/getting-started) application. While you don't need to know much about Next.js to complete this assignment, we encourage you to check out the basics. You might find using some Next.js features (such as SSR) in your assignment to be useful and time saving.
-
-3. We care about your code being linted, clean, readable, maintainable, well-tested, and well-documented as much as we care about the end result. We'd like to know your reasoning behind your design and code. Documentation would help us not to misunderstand and overlooking your intentions. You are free to chose the technologies you enforce these things with, but please make sure to do so.
-
-4. Please make sure that your build works, and we can run your code. If the build breaks due to minor issues like linting, **we will** try our best to get around it and somehow run your code to evaluate it. However keep in mind that this might effect your overall score.
 
 # Acme Store
 
